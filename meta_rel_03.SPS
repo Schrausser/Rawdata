@@ -1,0 +1,310 @@
+* SCHRAUSSER: Testkonstruktion ss03
+* code by d.schrausser (c) 2003.
+
+tit "berechnung der inneren konsistenz nach chronbachs alpha".
+tit "primär durchgang, nach schwierigkeitsselektion".
+RELIABILITY
+  /VARIABLES= 
+    si01a
+    si02a
+    si03
+    si04
+    si05
+    si06
+    si07a
+    si08a
+    si09
+    si10
+    si11a
+    si12a
+    si13a
+    si14
+    si15
+    si16a
+    si17
+    si18a
+    si19
+    si20a
+    si21
+    si22a
+    si23a
+    si24a
+    si25
+    si26a
+    si27a
+    si28
+    si29
+    si30a
+    si31
+    si32
+    si33a
+    si34a
+    si35
+    si36a
+    si37
+    si38
+    si39a
+    si40
+    si41
+    si42
+    si43a
+    si44
+    si45
+    si46a
+    si47a
+    si48a
+    si49
+    si50a
+    si51
+    si52a
+    si53a
+    si54
+    si55a
+    si56a
+    si57
+    si59
+    si60a  
+  /SCALE(ALPHA_sel1)=
+    si01a
+    si02a
+    si03
+    si04
+    si05
+    si06
+    si07a
+    si08a
+    si09
+    si10
+    si11a
+    si12a
+    si13a
+    si14
+    si15
+    si16a
+    si17
+    si18a
+    si19
+    si20a
+    si21
+    si22a
+    si23a
+    si24a
+    si25
+    si26a
+    si27a
+    si28
+    si29
+    si30a
+    si31
+    si32
+    si33a
+    si34a
+    si35
+    si36a
+    si37
+    si38
+    si39a
+    si40
+    si41
+    si42
+    si43a
+    si44
+    si45
+    si46a
+    si47a
+    si48a
+    si49
+    si50a
+    si51
+    si52a
+    si53a
+    si54
+    si55a
+    si56a
+    si57
+    si59
+    si60a 
+ /MODEL=ALPHA
+ /sum tot
+.
+
+tit "sekundär durchgang, nach trennschärfenselektion".
+RELIABILITY
+  /VARIABLES= 
+    si01a
+    si02a
+    si03
+    si04
+    si05
+    si06
+    si07a
+    si08a
+    si09
+    si10
+    si11a
+    si12a
+    si13a
+    si14
+    si15
+    si16a
+    si17
+    si18a
+    si19
+    si20a
+    si21
+    si22a
+    si23a
+    si24a
+    si25
+    si26a
+    si27a
+    si28
+    si29
+    si30a
+    si31
+    si32
+    si33a
+    si34a
+    si35
+    si36a
+    si37
+    si38
+    si39a
+    si40
+    si41
+    si42
+    si43a
+    si44
+    si45
+    si46a
+    si47a
+    si48a
+    si49
+    si50a
+    si51
+    si52a
+    si53a
+    si54
+    si55a
+    si56a
+    si57
+    si59
+    si60a  
+  /SCALE(ALPHA_sel2)=
+    si01a
+    si03
+    si04
+    si05
+    si06
+    si07a
+    si08a
+    si09
+    si10
+    si12a
+    si13a
+    si15
+    si16a
+    si17
+    si18a
+    si20a
+    si21
+    si22a
+    si23a
+    si24a
+    si26a
+    si27a
+    si28
+    si30a
+    si31
+    si32
+    si34a
+    si35
+    si37
+    si40
+    si42
+    si43a
+    si44
+    si45
+    si46a
+    si48a
+    si50a
+    si53a
+    si55a
+    si56a
+    si57
+    si59
+    si60a 
+ /MODEL=ALPHA
+ /sum tot
+.
+
+tit "berechnung des scores zur subjektiven intelligenz".
+
+comp sisco 
+        = 
+        mean
+       (
+ 	  si01a,
+    si03,
+    si04,
+    si05,
+    si06,
+    si07a,
+    si08a,
+    si09,
+    si10,
+    si12a,
+    si13a,
+    si15,
+    si16a,
+    si17,
+    si18a,
+    si20a,
+    si21,
+    si22a,
+    si23a,
+    si24a,
+    si26a,
+    si27a,
+    si28,
+    si30a,
+    si31,
+    si32,
+    si34a,
+    si35,
+    si37,
+    si40,
+    si42,
+    si43a,
+    si44,
+    si45,
+    si46a,
+    si48a,
+    si50a,
+    si53a,
+    si55a,
+    si56a,
+    si57,
+    si59,
+    si60a
+        )
+.
+exe.
+
+
+tit "prüfung der verteilungsparameter von sisco".
+
+NPAR TESTS
+  /K-S(NORMAL)= sisco 
+  /MISSING ANALYSIS
+.
+
+fre sisco oisco /his nor /sta all
+.
+
+PPLOT
+  /VARIABLES=sisco
+  /NOLOG /NOSTANDARDIZE
+  /TYPE=P-P
+  /TIES=MEAN
+.
