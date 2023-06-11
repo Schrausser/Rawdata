@@ -1,2 +1,2 @@
 # Rawdata
-SPSS Data Files.
+SPSS Data and Syntax Files.
